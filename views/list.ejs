@@ -1,0 +1,18 @@
+<%- include('header'); %> 
+List of Minutes of DAAC
+
+<br>
+<% for(var i=0; i < minutes.length; i++) { %>
+    <% if(i%2==0) {%>
+    <div class="text-primary"> 
+            <% } %>
+            <% if(i%2==1) {%>
+                <div class="text-danger"> 
+                        <% } %>
+        Id :  <%= minutes[i]._id %><br>
+        Date :  <%= minutes[i].date %><br>
+        Title : <%= minutes[i].title %><br>
+        description : <%= minutes[i].description %><br>
+        <br>
+    </div>
+      <% } %>

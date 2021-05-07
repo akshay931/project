@@ -1,0 +1,38 @@
+<%- include('header'); %> 
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Title</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% for(var i=0; i < minutes.length; i++) { %>
+            <tr>
+                <th scope="row"><%= i+1 %></th>
+                <td><%= minutes[i]._id %></td>
+                <td><%= minutes[i].date %></td>
+                <td><%= minutes[i].title %></td>
+                <td>
+                    
+                    <button class="btn btn-outline-danger delete-minute" id="<%= minutes[i]._id %>">Delete</button>
+                </td>
+              </tr>
+            <% } %>
+        
+     
+    </tbody>
+  </table>
+  <script>
+      $(document).ready(function(){
+  $(".delete-minute").click(function(){
+    var id = $(this).attr('id');
+    $.post("delete", { "id":id } );
+  });
+});
+</script>
