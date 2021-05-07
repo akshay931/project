@@ -9,15 +9,11 @@ router.get('/', function(req, res, next) {
 router.get('/search', function(req, res, next) {
   res.render('search');
 });
-router.get('/add', function(req, res, next) {
-  client.connect(function(err) {
-    const db = client.db(dbName);
-    assert.equal(null, err);
-    db.collection("minutes").find({}).toArray(function(err, result) {
-      if (err) throw err;
-      res.render('add-remove',{"minutes":result});      
-    });
-  });
+router.get('/add', function(req, res) {
+  res.render('add');
+});
+router.post('/add-post', function(req, res) {
+  res.render('add');
 });
 router.get('/remove', function(req, res, next) {
   client.connect(function(err) {

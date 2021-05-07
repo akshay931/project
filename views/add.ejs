@@ -1,2 +1,28 @@
 <%- include('header'); %> 
-this is Add page
+    this is Add page
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label" >Title</label>
+    <input type="email" class="form-control" id='title' placeholder="name@example.com">
+  </div>
+    <label for="example-date-input" class="col-2 col-form-label" >Date</label>
+    <div class="col-10">
+      <input class="form-control" type="date" value="2011-08-19" id='date' >
+    </div>
+    
+  <div class="mb-3">
+    <label for="exampleFormControlTextarea1" class="form-label">Text</label>
+    <textarea class="form-control" id="text" rows="3"></textarea>
+  </div>
+  <button class="btn btn-success" id="submit-post">submit</button>
+
+  <script>
+    $(document).ready(function(){
+$(".submit-post").click(function(){
+  var date = $(".date").attr('id');
+  var title = $(".title").attr('id');
+  var text = $(".text").attr('id');
+  $.post("add-post", { "date":date,"title":title,"text":text } );
+});
+});
+</script>
