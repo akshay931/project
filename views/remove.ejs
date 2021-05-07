@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         <% for(var i=0; i < minutes.length; i++) { %>
-            <tr>
+            <tr id="delete-row">
                 <th scope="row"><%= i+1 %></th>
                 <td><%= minutes[i]._id %></td>
                 <td><%= minutes[i].date %></td>
@@ -32,7 +32,8 @@
       $(document).ready(function(){
   $(".delete-minute").click(function(){
     var id = $(this).attr('id');
-    $.post("delete", { "id":id } );
+    $.post("delete", { delete:id } );
+    $(this).parent().parent().hide();
   });
 });
 </script>

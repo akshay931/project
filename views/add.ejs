@@ -7,7 +7,7 @@
   </div>
     <label for="example-date-input" class="col-2 col-form-label" >Date</label>
     <div class="col-10">
-      <input class="form-control" type="date" value="2011-08-19" id='date' >
+      <input class="form-control" type="date"  id="date" >
     </div>
     
   <div class="mb-3">
@@ -15,14 +15,28 @@
     <textarea class="form-control" id="text" rows="3"></textarea>
   </div>
   <button class="btn btn-success" id="submit-post">submit</button>
+  <p class="txt txt-danger" id="post-confirmation">your post added in database</p>
 
   <script>
     $(document).ready(function(){
-$(".submit-post").click(function(){
-  var date = $(".date").attr('id');
-  var title = $(".title").attr('id');
-  var text = $(".text").attr('id');
-  $.post("add-post", { "date":date,"title":title,"text":text } );
+        $('#post-confirmation').hide();
+$("#submit-post").click(function(){
+    
+    var date1 = new Date($('#date').val());
+  var day = date1.getDate();
+  var month = date1.getMonth() + 1;
+  var year = date1.getFullYear();
+var date = [day, month, year].join('-');
+
+  var title = $("#title").val();
+  var text = $("#text").val();
+  $.post("add-post", { date:date,title:title,text:text} );
+  $("#date").val('');
+  $("#title").val('');
+  $("#text").val('');
+  $('#post-confirmation').show();
+  setTimeout(function(){ $('#post-confirmation').hide();}, 3000);
+  
 });
 });
 </script>

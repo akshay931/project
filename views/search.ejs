@@ -1,2 +1,69 @@
 <%- include('header'); %> 
-this is search page
+
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label" >Search By Title</label>
+    <input type="email" class="form-control" id='search' placeholder="Search here ">
+  </div>
+  <br>
+  <br>
+  <br>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Date</th>
+        <th scope="col">Title</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody >
+        <div >
+       <% var i=0; %>
+            <tr id="delete-row">
+                <th scope="row" ><%= i+1 %></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    
+                    <button class="btn btn-outline-danger delete-minute ">Delete</button>
+                </td>
+              </tr>
+        
+            </div>
+            
+    </tbody>
+  </table>
+  <script>
+$(document).ready(function(){
+    $(".table").hide();
+$("#search").keyup(function(){
+    var search = $(this).val();
+    if($(this).val()==""){
+        $(".table").hide();
+
+    }
+    else
+{
+    
+$.ajax(
+    {
+        type: 'POST',
+        url: '/search',
+        data : {search : search},
+        success: function(data) {
+            if(data.search!="") {$(".table").show(); }
+                $("#search-box").text(data.search);
+        }
+
+
+
+})
+}
+});
+
+
+})
+
+  </script>
